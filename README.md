@@ -1,136 +1,203 @@
+
+
+---
+
 <h1 align="center">ESP32-BlueJammer</h1>
 <div align="center">
   <img src="https://dwdwpld.pages.dev/ESP32-BlueJammerBy@emensta.jpg" alt="ESP32-BlueJammer">
 </div>
+---
+
+🛠️ ESP32-BlueJammer කියන්නේ මොකක්ද?
+
+ESP32-BlueJammer එකක් කියන්නේ ESP32 NodeMCU එකක් සහ nRF24L01+ modules දෙකක් භාවිතා කරලා 2.4GHz frequency එකේ ක්‍රියා කරන device එකක්.
+
+මෙම device එක:
+
+Bluetooth
+
+WiFi
+
+RC Drones
+
+Audio devices
+
+IoT devices වගේ උපාංග වල සම්බන්ධතාවය බාධා කරයි (DoS – Denial of Service).
+
+
+👉 මෙය security testing සහ controlled disruption සඳහා පමණක් භාවිතා කරන්න.
+
+
+---
+
+📡 කෙටි විස්තරයක්
+
+වැඩ කරන range එක: 30m වැඩිදුරටත් (ඇන්ටෙනාව මත රඳා පවතී)
+
+“Router” ඇන්ටෙනා හෝ 2.4GHz amplifier එකක් එකතු කළොත් range එක වැඩි කරන්න පුළුවන්
+
+නවතම Bluetooth version වලටත් support වෙනවා
 
 
 
-## ESP32-BlueJammer
-The ESP32-BlueJammer disrupts various devices using an ESP32 NodeMCU and nRF modules, causing plenty of noise and sending unnecessary packets (DoS).              
-                                                                    
-It interrupts:                                                       
-audio in speakers, smartphone connections, WiFi, RC Drones (etc.), IoT devices, and much more communicating on 2.4GHz!
+---
 
-Ideal for controlled disruption and security testing. Based on 2,4GHz communication.
+🎥 TikTok Tutorial
 
-It has a big range (over 30Meters - may vary on your antenna and hardware setup!) on newest Bluetooth versions with casual 2.4GHz antennas, you can easily increase this aswell by taking some simple "bigger" router antennas.
-An amplifier (2.4GHz) may be an good option too!
+මෙතනින් බලන්න TikTok DIY වීඩියෝව
 
 
+---
 
+📶 වැඩ කරන Channel
 
-## TikTok video with a complete tutorial
-[Full TikTok DIY tutorial](https://www.tiktok.com/@aloka_tek_teach)
+Bluetooth = 80 චැනල්
 
+BLE = 40 චැනල්
 
+WiFi = 14 චැනල්
 
-## operation channels
-- Bluetooth = 80CH
-- BLE = 40CH
-- WiFi = 14CH
-- RC drones, etc. = 1-125CH
+RC drones = 1 - 125 චැනල්
 
 
 
-## hardware
-- ESP32 Dev Module (such as ESP32-WROOM-32U)
-- nRF24L01+PA+LNA (2x)
-- 10UF capacitor (2x) any voltage above 5V
+---
 
-If you're looking to add a battery:
-- 3.7V Li-Ion battery
-- JST PH 2,0 connector
-- TP4056 Charging Module
-- 3mm LED (blue)
-- 470k Ohm resistor
-- mini slide switch
+🔧 අවශ්‍ය hardware
 
-To screw the 3D printed case together you must have:
-- M3X16 screws (2x)
-- M3 Nuts (2x)
-### THE 3D printed case fits ONLY a PCB size of 7cm x 5.5cm and you'll need to drill out 2 holes according for the M3 screws to fit through the PCB!
+ESP32 Dev Module (ESP32-WROOM-32U වැනි)
+
+nRF24L01+PA+LNA modules (2ක්)
+
+10UF Capacitor (2ක්) (5V වඩා වැඩි වෝල්ටයේ කිසිම capacitor එකක් OK)
 
 
-## flashing ESP32 via webflasher
-![ESP32-BlueJammerFlasher](https://dwdwpld.pages.dev/ESP32BlueJammerFlasher.png)                                                                 
-I've created a webflasher to make it super easy for you to flash your ESP32 chip with the ESP32-BlueJammer firmware of your choice!
-- Visit [ESP32-BlueJammerFlasher](https://esp32-bluejammerflasher.pages.dev)
-- Connect your ESP32 via a data USB cable
-- Choose your firmware, chip and connect
-- Flash the firmware of your choice :D
+බැටරි එකක් දාන්න ඔනනම්:
+
+3.7V Li-Ion battery
+
+JST PH 2.0 Connector
+
+TP4056 Charging Module
+
+Blue LED (3mm)
+
+470k Ohm resistor
+
+Mini Slide Switch
 
 
+3D case එකක් Fixed කරන්න නම්:
 
-## ESP32-nRF24L01+ pinout
-Here are both pinouts for HSPI and VSPI. You need both nRF24L01 modules connected in order to achieve full capability of the device.                
-[nRF24L01+ pinout](https://dwdwpld.pages.dev/nRF24L01pinout.png)
-### HSPI
-| 1st nRF24L01 module Pin | HSPI Pin (ESP32) | 10uf capacitor |
-|---------------|------------------|--------------------|
-| VCC           | 3.3V             | (+) capacitor |
-| GND           | GND              | (-) capacitor |
-| CE            | GPIO 16          |
-| CSN           | GPIO 15          |
-| SCK           | GPIO 14          |
-| MOSI          | GPIO 13          |
-| MISO          | GPIO 12          |
-| IRQ           |     |
+M3X16 screws (2ක්)
 
-### VSPI 
-| 2nd nRF24L01 module Pin | VSPI Pin (ESP32) | 10uf capacitor |
-|---------------|------------------|--------------------|
-| VCC           | 3.3V             | (+) capacitor |
-| GND           | GND              | (-) capacitor |
-| CE            | GPIO 22          |
-| CSN           | GPIO 21          |
-| SCK           | GPIO 18          |
-| MOSI          | GPIO 23          |
-| MISO          | GPIO 19          |
-| IRQ           |     |
-
-### Battery mod
-| 3.7V Li-Ion battery | JST PH 2.0 connector | TP4056 Charging Module | Mini Slide Switch | ESP32 | 3mm LED (blue) | 470k Ohm Resistor |
-|---------------------|----------------------|------------------------|-------------------|-------|----------------|--------------------|
-| (+) battery         | (+) JST              | B+                     |                   |       |                |                    |
-| (-) battery         | (-) JST              | B-                     |                   |       |                |                    |
-|                     |                      | OUT +                  | switch (+) input  |       |                |                    |
-|                     |                      | OUT -                  |                   | GND   |                | resistor output    |
-|                     |                      |                        | switch (+) output | 3V3   | (+) LED        |                    |
-|                     |                      |                        |                   |       | (-) LED        | resistor input     |
+M3 Nuts (2ක්)
 
 
-## 3D printed case
+🧾 PCB size = 7cm x 5.5cm. Drill holes දෙකක් කරලා M3 screws සදහා adjust කරන්න.
 
-<h3 align="center">Access to the ESP32 micro-USB port, aswell as to both EN & Boot buttons</h3>
 
-![ESP32MicroUSB](https://dwdwpld.pages.dev/ESP32-BlueJammerMicroUsb.jpg)
+---
 
-<h3 align="center">TP4056 charging port access with charging state indicator holes (red=charging - blue=fully charged)</h3>
-
-![USB_C_chargerWithIndicators](https://dwdwpld.pages.dev/ESP32-BlueJammerUSB_C_chargerWithIndicators.jpg)
-
-<h3 align="center">On/off switch with blue indicator LED</h3>
-
-![OnOffSwitch](https://dwdwpld.pages.dev/ESP32-BlueJammerOnOffSwitch.jpg)
+🔌 ESP32 Flash කිරීම WebFlasher එකෙන්
 
 
 
-## 3D model view [[download .stl](https://dwdwpld.pages.dev/ESP32-BlueJammerBy@emensta3DCase.stl)]
+Flash කරන ක්‍රමය:
 
-<h3 align="center">Here's a look at the model itself</h3>
-
-![3DCaseView](https://dwdwpld.pages.dev/ESP32-BlueJammer3DCaseView.png)
+1. මෙතන click කරන්න
 
 
-
-## PCB
-
-<h3 align="center">That's how the components are placed (PCB size=7cm x 5.5cm - Larger sizes will NOT fit in the case!)</h3>
-
-![DIYPCB](https://dwdwpld.pages.dev/DIYPCB.jpg)
+2. ESP32 එක USB data cable එකෙන් connect කරන්න
 
 
-<h1 align="center"> DISCLAIMER </h1>
+3. Chip එක, firmware එක තෝරලා Flash කරන්න!
 
-<h4 align="center">Please note that the use of this tool is entirely at your own risk. It is intended strictly for educational purposes and should not be used for any illegal or unethical activities. Jamming is illegal and can get you in big trouble!</h4>
-<h4 align="center">I'm not responsible for your actions! </h4>
+
+
+
+---
+
+📌 nRF24L01+ Pinout – HSPI සහ VSPI
+
+📍 HSPI module (1st):
+
+nRF24L01+ Pin	ESP32 Pin	Capacitor
+
+VCC	3.3V	(+)
+GND	GND	(–)
+CE	GPIO 16	
+CSN	GPIO 15	
+SCK	GPIO 14	
+MOSI	GPIO 13	
+MISO	GPIO 12	
+
+
+📍 VSPI module (2nd):
+
+nRF24L01+ Pin	ESP32 Pin	Capacitor
+
+VCC	3.3V	(+)
+GND	GND	(–)
+CE	GPIO 22	
+CSN	GPIO 21	
+SCK	GPIO 18	
+MOSI	GPIO 23	
+MISO	GPIO 19	
+
+
+
+---
+
+🔋 බැටරි සම්බන්ධකරණය
+
+කොටස	සම්බන්ධය
+
+Battery +	JST PH 2.0 +
+Battery -	JST PH 2.0 -
+OUT + from TP4056	Switch input (+) → ESP32 3V3
+OUT - from TP4056	ESP32 GND
+LED +	ESP32 3V3
+LED -	470k Resistor → GND
+
+
+
+---
+
+🖨️ 3D Printed Case
+
+📌 ESP32 USB Port, EN, Boot buttons එකට යා හැකි ආකාරයට!
+
+
+
+📌 TP4056 Charging Port එක සහ LED indicators (Red = Charging | Blue = Fully Charged)
+
+
+
+📌 On/Off Switch එක සහ Blue LED indicator
+
+
+
+📎 3D Model එක මෙතනින් බාගන්න (.stl)
+
+
+
+
+---
+
+🧩 PCB (සහය දක්වන ආකාරය)
+
+📌 PCB size = 7cm x 5.5cm – වැඩි එකක් use කරන්න බැහැ
+
+
+
+
+---
+
+⚠️ අවවාදයෙකියි!
+
+<h4 align="center">මෙය අධ්‍යාපනික අරමුණු සඳහා පමණි! නීති විරෝධී හෝ අසදාචාරවත් ක්‍රියා සඳහා මෙය භාවිතා නොකරන්න. Jamming කිරීම බොහෝ රටවල නීතිවිරෝධී ක්‍රියාවකි.</h4><h4 align="center">ඔබගේ ක්‍රියා වලට මම කිසිදු වගකීමක් නොගෙනි.</h4>
+---
+
+ඔබට අවශ්‍ය වුනහොත්, මම මේක PDF එකක් වශයෙන් convert කරලා දෙන්න පුළුවන්. කියන්න 😎
+
